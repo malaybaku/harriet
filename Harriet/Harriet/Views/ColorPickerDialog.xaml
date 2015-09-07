@@ -1,0 +1,16 @@
+﻿<Window x:Class="Harriet.Views.ColorPickerDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Color Select" Height="350" Width="300"
+        ResizeMode="NoResize"
+        >
+    <Grid>
+        <ex:ColorCanvas x:Name="colorCanvas" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Cancel" Width="50" Margin="5,0" Click="OnCancelClicked"/>
+            <Button Content="OK" Width="50" Margin="5,0" Click="OnColorSelected"/>
+        </StackPanel>
+    </Grid>
+</Window>
+
