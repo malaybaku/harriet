@@ -1,0 +1,65 @@
+Copyright ©  2015 獏(ばく) 
+
+1. ソースコード
+2. 外部依存リソース
+2-1. IronPython
+2-2. Livet
+2-3. MetroRadiance
+2-4. AquesTalk
+2-5. NMeCab
+
+
+1. ソースコード
+本レポジトリにおいてソースコードの形態で公開されるリソースはMITライセンスに従って公開されており、具体的には本フォルダ以下の"Harriet\LICENSE"がライセンス宣言になります。
+
+
+
+2. 外部依存リソース
+下記において個別に記載しています。利便性のため(と私がこれらのリソースの原著作者でないことを強調するため)著作元URLを付記しています。
+
+
+2-1. IronPython
+IronPythonはプログラミング言語Pythonの.NET実装であり、Apache License 2.0によって配布されています。
+IronPython公式ページ: http://ironpython.net
+Apache Licence 2.0(英語版): http://www.apache.org/licenses/LICENSE-2.0
+Apache Licence 2.0(和訳版): http://sourceforge.jp/projects/opensource/wiki/licenses%2FApache_License_2.0
+
+
+2-2. Livet
+LivetはWPF(Windows Presentation Foundation)の為のMVVM(Model-View-ViewModel)パターン実装用インフラストラクチャでありzlib/libpngライセンスで公開されています。
+公式ページ: http://ugaya40.hateblo.jp/entry/livet
+公式ページ(github): https://github.com/ugaya40/Livet
+
+
+2-3. MetroRadiance
+MetroRadianceはWPFの外観変更ライブラリでありMITライセンスで公開されています。具体的には本フォルダ以下"MetroRadiance\LICENSE.txt"がライセンスになっています。
+webページ: https://www.nuget.org/packages/MetroRadiance/
+
+
+
+2-4. AquesTalk
+本ソフトは(株)アクエストの音声合成ライブラリAquesTalkを使用しており、著作権は同社に帰属します。具体的には
+・AqLicense.txt
+・AquesTalk.dll
+の2ファイルが含まれるフォルダとして本ソフトに含まれており、レポジトリトップからのパスで"Harriet\Harriet\bin\Debug\dll\AquesTalk"以下に下記の8フォルダが存在します。
+・f1
+・f2
+・m1
+・m2
+・r1
+・imd1
+・dvd
+・jgr
+これらのライセンスは上述の各フォルダに含まれる"AqLicense.txt"に従います。
+webページ: http://www.a-quest.com/
+
+なお現在2015年8月時点で(株)アクエストが公開するAquesTalkには本節で掲載したのと異なるライセンスが適用されています。AquesTalkは世間一般に出回っているものでもライセンスのバリエーションが複数存在するので十分ライセンスに留意してご利用下さい。
+
+
+2-5. NMeCab
+NMeCabは形態素解析ライブラリでありGPLとLGPLのデュアルライセンスで公開されています。HarrietではLGPLに従って再利用しています。
+webページ: https://osdn.jp/projects/nmecab/
+
+GPL関係のライセンスは取り扱いがキナ臭くなりがちなので注記しておきますが、Harrietでは頒布状態のNMeCabバイナリをそのまま動的リンクして使っているのでLGPLを継承する義務を負っておらず、実際にLGPLではなくMITライセンスを採用しています。
+
+
