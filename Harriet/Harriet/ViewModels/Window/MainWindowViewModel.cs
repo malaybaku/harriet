@@ -344,7 +344,14 @@ namespace Harriet.ViewModels
         public ViewModelCommand CloseCanceledCommand
             => _CloseCanceledCommand ?? (_CloseCanceledCommand = new ViewModelCommand(CloseCanceled));
 
-        private void CloseCanceled() => CloseRequested?.Invoke(this, EventArgs.Empty);
+        private void CloseCanceled()
+        {
+            //ここでCloseを認めるのでCloseスクリプトをAlt+F4で止めたりできる
+            CanClose = true;
+            CloseRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+
         #endregion
 
         #endregion

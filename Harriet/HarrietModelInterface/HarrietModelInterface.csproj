@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITextToPronounceConverter.cs" />
+    <Compile Include="ITextToPronounceConverterFactory.cs" />
+    <Compile Include="IVoiceSynthesize.cs" />
+    <Compile Include="IVoiceSynthesizeFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

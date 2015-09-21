@@ -159,7 +159,7 @@ namespace Harriet.Models.Voice
         /// <param name="wav"></param>
         /// <param name="interval"></param>
         /// <returns></returns>
-        public static int[] VolumesDiscrete(byte[] wav, double interval)
+        public static int[] GetVolumesDiscrete(byte[] wav, double interval)
         {
             return Volumes(wav, interval)
                 .Select(v =>

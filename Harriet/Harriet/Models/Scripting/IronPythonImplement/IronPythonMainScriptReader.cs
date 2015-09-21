@@ -45,6 +45,8 @@ namespace Harriet.Models.Scripting
         /// <param name="filename">スクリプトのパス</param>
         public Task ReadAsync(string filename)
         {
+            if (!File.Exists(filename)) return Task.Run(() => { });
+
             if (IsExecutingScript) return Task.Run(() => { });
             IsExecutingScript = true;
 

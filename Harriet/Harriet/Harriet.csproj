@@ -41,76 +41,82 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IronPython, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
       <HintPath>..\packages\IronPython.2.7.5\lib\Net45\IronPython.dll</HintPath>
     </Reference>
     <Reference Include="IronPython.Modules, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
       <HintPath>..\packages\IronPython.2.7.5\lib\Net45\IronPython.Modules.dll</HintPath>
     </Reference>
     <Reference Include="IronPython.SQLite, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\IronPython.2.7.5\lib\Net45\IronPython.SQLite.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IronPython.Wpf, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\IronPython.2.7.5\lib\Net45\IronPython.Wpf.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Livet">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>InfrastructureAssemblies\Livet.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Livet, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b0b1d3f711ef38cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\LivetCask.1.1.0.0\lib\net45\Livet.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MetroRadiance">
-      <HintPath>..\packages\MetroRadiance.1.0.16\lib\net45\MetroRadiance.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MetroRadiance, Version=1.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroRadiance.1.1.0.2\lib\net45\MetroRadiance.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MetroRadiance.Chrome">
-      <HintPath>..\packages\MetroRadiance.Chrome.1.0.0\lib\net45\MetroRadiance.Chrome.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MetroRadiance.Chrome, Version=1.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroRadiance.Chrome.1.1.0.2\lib\net45\MetroRadiance.Chrome.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MetroRadiance.Core">
-      <HintPath>..\packages\MetroRadiance.Core.1.0.0\lib\net45\MetroRadiance.Core.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MetroRadiance.Core, Version=1.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroRadiance.Core.1.1.0.2\lib\net45\MetroRadiance.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
       <HintPath>..\packages\IronPython.2.7.5\lib\Net45\Microsoft.Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroRadiance.1.0.16\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\LivetCask.1.1.0.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
       <HintPath>..\packages\IronPython.2.7.5\lib\Net45\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Scripting.AspNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\IronPython.2.7.5\lib\Net45\Microsoft.Scripting.AspNet.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
       <HintPath>..\packages\IronPython.2.7.5\lib\Net45\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Reactive.Core, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Reactive.Interfaces, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Reactive.Linq, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroRadiance.1.0.16\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\LivetCask.1.1.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -138,12 +144,24 @@
     <Compile Include="Models\Core\HarrietCharacterOperator.cs" />
     <Compile Include="Models\Core\ScriptingOperator.cs" />
     <Compile Include="Models\Core\Setting\CharacterSetting.cs" />
-    <Compile Include="Models\Voice\VoiceSynth\AquesVoiceSynther.cs" />
+    <Compile Include="Models\Voice\LipSynch\WaveInfoWithNAudio.cs" />
+    <Compile Include="Models\Voice\TextToPronounce\ImeTextConverterFactory.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceConstNames.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceNeutral.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceMachine.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceSpecial.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceRobot.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceM2.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceM1.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceF2.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceF1.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\AquesTalk\AquesVoiceSynthesize.cs" />
+    <Compile Include="Models\Core\Plugin\PluginDirectoryNames.cs" />
+    <Compile Include="Models\Voice\VoiceSynth\VoiceSynthesizerLoader.cs" />
     <Compile Include="Models\Chat\Setting\ChatWindowLayoutSetting.cs" />
     <Compile Include="Models\Voice\TextToPronounce\ImeInverter.cs" />
     <Compile Include="Models\Voice\TextToPronounce\ImeTextConverter.cs" />
     <Compile Include="Models\Voice\VoiceOperation\IVoiceOperator.cs" />
-    <Compile Include="Models\Voice\VoiceSynth\IVoiceSynther.cs" />
     <Compile Include="Models\Voice\TextToPronounce\TextToPronounceConverterLoader.cs" />
     <Compile Include="Models\Voice\Setting\VoiceSetting.cs" />
     <Compile Include="Models\Core\Setting\CommonSettingRecord.cs" />
@@ -286,15 +304,47 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="FileDeployScript\harriet_fileset.ps1" />
+    <None Include="FileDeployScript\plugin_fileset.ps1" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="AquesTalk\dvd\AqLicense.txt" />
+    <Content Include="AquesTalk\dvd\AquesTalk.dll" />
+    <Resource Include="AquesTalk\f1\AqLicense.txt" />
+    <Content Include="AquesTalk\f1\AquesTalk.dll" />
+    <Resource Include="AquesTalk\f2\AqLicense.txt" />
+    <Content Include="AquesTalk\f2\AquesTalk.dll" />
+    <Resource Include="AquesTalk\imd1\AqLicense.txt" />
+    <Content Include="AquesTalk\imd1\AquesTalk.dll" />
+    <Resource Include="AquesTalk\jgr\AqLicense.txt" />
+    <Content Include="AquesTalk\jgr\AquesTalk.dll" />
+    <Resource Include="AquesTalk\m1\AqLicense.txt" />
+    <Content Include="AquesTalk\m1\AquesTalk.dll" />
+    <Resource Include="AquesTalk\m2\AqLicense.txt" />
+    <Content Include="AquesTalk\m2\AquesTalk.dll" />
+    <Resource Include="AquesTalk\r1\AqLicense.txt" />
+    <Content Include="AquesTalk\r1\AquesTalk.dll" />
+    <Content Include="IronPython\dpi_getter.py" />
+    <Content Include="IronPython\fade.py" />
+    <Content Include="IronPython\harriet_cache.py" />
+    <Content Include="IronPython\jumping.py" />
+    <Content Include="IronPython\myhtml.py" />
+    <Content Include="IronPython\position.py" />
+    <Content Include="IronPython\rigid_jump.py" />
+    <Content Include="IronPython\rollin.py" />
+    <Content Include="IronPython\rollout.py" />
+    <Content Include="IronPython\rssparser.py" />
+    <Content Include="IronPython\rss_render.py" />
+    <Content Include="IronPython\slide.py" />
     <Resource Include="Icon\harriet.ico" />
     <Resource Include="harriet.ico" />
     <Content Include="InfrastructureAssemblies\Design\Livet.Design.dll" />
@@ -313,8 +363,23 @@
       <Name>HarrietModelInterface</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SpeechLib">
+      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>powershell -ExecutionPolicy RemoteSigned -File "$(ProjectDir)FileDeployScript\harriet_fileset.ps1" "$(SolutionDir)\" "$(ProjectDir)\" "$(TargetDir)\"
+powershell -ExecutionPolicy RemoteSigned -File "$(ProjectDir)FileDeployScript\plugin_fileset.ps1" "$(SolutionDir)\" "$(ProjectDir)\" "$(TargetDir)\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

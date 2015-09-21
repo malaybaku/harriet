@@ -14,6 +14,32 @@
             ボタンに割り当てるウィンドウ操作を取得または設定します。
             </summary>
         </member>
+        <member name="T:MetroRadiance.Controls.Int32Rule">
+            <summary>
+            入力された値が有効な <see cref="T:System.Int32"/> 値かどうかを検証します。
+            </summary>
+        </member>
+        <member name="P:MetroRadiance.Controls.Int32Rule.AllowsEmpty">
+            <summary>
+            入力に空文字を許可するかどうかを示す値を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:MetroRadiance.Controls.Int32Rule.Min">
+            <summary>
+            入力可能な最小値を取得または設定します。
+            </summary>
+            <value>
+            入力可能な最小値。最小値がない場合は null。
+            </value>
+        </member>
+        <member name="P:MetroRadiance.Controls.Int32Rule.Max">
+            <summary>
+            入力可能な最大値を取得または設定します。
+            </summary>
+            <value>
+            入力可能な最大値。最大値がない場合は null。
+            </value>
+        </member>
         <member name="T:MetroRadiance.Controls.MetroWindow">
             <summary>
             Metro スタイル風のウィンドウを表します。
@@ -31,7 +57,7 @@
         </member>
         <member name="P:MetroRadiance.Controls.MetroWindow.DpiScaleTransform">
             <summary>
-            DPI スケーリングを実現する <see cref="T:System.Windows.Media.Transform"/> を取得または設定します。
+            DPI スケーリングを実現する <see cref="T:System.Windows.Media.Transform" /> を取得または設定します。
             </summary>
         </member>
         <member name="P:MetroRadiance.Controls.MetroWindow.WindowChrome">

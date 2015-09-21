@@ -14,6 +14,28 @@
             <see cref="T:MetroRadiance.Chrome.Internal.GlowWindow"/> の各種座標を計算します。
             </summary>
         </member>
+        <member name="P:MetroRadiance.Chrome.Internal.GlowWindowProcessor.GlowSize">
+            <summary>
+            ウィンドウの発光サイズを取得します。
+            </summary>
+        </member>
+        <member name="P:MetroRadiance.Chrome.Internal.GlowWindowProcessor.EdgeSize">
+            <summary>
+            ウィンドウの発光効果のエッジサイズを取得します。
+            </summary>
+        </member>
+        <member name="P:MetroRadiance.Chrome.Internal.GlowWindowProcessor.HorizontalAlignment">
+            <summary>
+            派生クラスでオーバーライドされると、<see cref="T:MetroRadiance.Chrome.Internal.GlowWindow"/>
+            に設定する <see cref="P:System.Windows.Controls.Control.HorizontalContentAlignment"/> プロパティの値を取得します。
+            </summary>
+        </member>
+        <member name="P:MetroRadiance.Chrome.Internal.GlowWindowProcessor.VerticalAlignment">
+            <summary>
+            派生クラスでオーバーライドされると、<see cref="T:MetroRadiance.Chrome.Internal.GlowWindow"/>
+            に設定する <see cref="P:System.Windows.Controls.Control.VerticalContentAlignment"/> プロパティの値を取得します。
+            </summary>
+        </member>
         <member name="M:MetroRadiance.Chrome.Internal.GlowWindowProcessor.GetLeft(System.Double,System.Double)">
             <summary>
             派生クラスでオーバーライドされると、<see cref="T:MetroRadiance.Chrome.Internal.GlowWindow"/>
@@ -63,28 +85,6 @@
             <param name="actualWidht">発光ウィンドウの現在の幅。</param>
             <param name="actualHeight">発光ウィンドウの現在の高さ。</param>
             <returns>マウスカーソル。</returns>
-        </member>
-        <member name="P:MetroRadiance.Chrome.Internal.GlowWindowProcessor.GlowSize">
-            <summary>
-            ウィンドウの発光サイズを取得します。
-            </summary>
-        </member>
-        <member name="P:MetroRadiance.Chrome.Internal.GlowWindowProcessor.EdgeSize">
-            <summary>
-            ウィンドウの発光効果のエッジサイズを取得します。
-            </summary>
-        </member>
-        <member name="P:MetroRadiance.Chrome.Internal.GlowWindowProcessor.HorizontalAlignment">
-            <summary>
-            派生クラスでオーバーライドされると、<see cref="T:MetroRadiance.Chrome.Internal.GlowWindow"/>
-            に設定する <see cref="P:System.Windows.Controls.Control.HorizontalContentAlignment"/> プロパティの値を取得します。
-            </summary>
-        </member>
-        <member name="P:MetroRadiance.Chrome.Internal.GlowWindowProcessor.VerticalAlignment">
-            <summary>
-            派生クラスでオーバーライドされると、<see cref="T:MetroRadiance.Chrome.Internal.GlowWindow"/>
-            に設定する <see cref="P:System.Windows.Controls.Control.VerticalContentAlignment"/> プロパティの値を取得します。
-            </summary>
         </member>
         <member name="T:MetroRadiance.Chrome.Properties.Resources">
             <summary>

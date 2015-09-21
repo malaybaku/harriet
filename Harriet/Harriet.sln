@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMecabTextConverter", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXamlCharacter", "SimpleXamlCharacter\SimpleXamlCharacter.csproj", "{D2C853B9-8F04-46FE-B81A-F1ED205BDBDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SapiVoiceSynthesize", "SapiVoiceSynthesize\SapiVoiceSynthesize.csproj", "{CF69E310-FF46-425B-B6DD-D0A075964449}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,18 @@ Global
 		{D2C853B9-8F04-46FE-B81A-F1ED205BDBDA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D2C853B9-8F04-46FE-B81A-F1ED205BDBDA}.Release|x86.ActiveCfg = Release|Any CPU
 		{D2C853B9-8F04-46FE-B81A-F1ED205BDBDA}.Release|x86.Build.0 = Release|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Debug|x86.Build.0 = Debug|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Release|x86.ActiveCfg = Release|Any CPU
+		{CF69E310-FF46-425B-B6DD-D0A075964449}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

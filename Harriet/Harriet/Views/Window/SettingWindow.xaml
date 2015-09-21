@@ -155,11 +155,17 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10" Orientation="Vertical" HorizontalAlignment="Left">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" DataContext="{Binding Voice}" >
-                            <StackPanel>
-                                <TextBlock Text="声種"/>
-                                <ComboBox Width="80" Margin="5"        
+                            <StackPanel HorizontalAlignment="Right">
+                                <TextBlock Text="声の種類"/>
+                                <ComboBox Width="160" Margin="5"        
                                     ItemsSource="{Binding Path=AllVoices}"
                                     SelectedItem="{Binding Path=VoiceType}"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="テキスト変換"/>
+                                <ComboBox Width="160" Margin="5"        
+                                    ItemsSource="{Binding Path=AllTextConverters}"
+                                    SelectedItem="{Binding Path=TextConverterType}"/>
                             </StackPanel>
                             <StackPanel>
                                 <TextBlock Text="音量"/>

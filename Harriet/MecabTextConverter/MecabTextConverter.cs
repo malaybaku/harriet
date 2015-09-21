@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using System.ComponentModel.Composition;
 
 using NMeCab;
@@ -10,16 +12,12 @@ using HarrietModelInterface;
 namespace MecabTextConverter
 {
     /// <summary>形態素解析ライブラリNMeCabを用いて平文/発音文変換を行う変換器を表します。</summary>
-    [Export(typeof(ITextToPronounceConverter))]
     public class MecabTextConverter : ITextToPronounceConverter
     {
         /// <summary>インスタンスを初期化します。</summary>
-        public MecabTextConverter()
+        internal MecabTextConverter()
         {
-            var param = new MeCabParam();
-            param.DicDir = @"Plugin\dic\ipadic";
-
-            MeCabTagger = MeCabTagger.Create(param);
+            InitializeMeCabTagger();
         }
 
         /// <summary>平文をAquesTalkでの発音に適したテキストに変換します。</summary>
@@ -27,9 +25,14 @@ namespace MecabTextConverter
         /// <returns>AquesTalkで発声可能な文字列</returns>
         public string Convert(string input)
         {
+            if(_meCabTagger == null)
+            {
+                InitializeMeCabTagger();
+            }
+
             var result = new StringBuilder();
 
-            for (var node = MeCabTagger.ParseToNode(input).Next;
+            for (var node = _meCabTagger.ParseToNode(input).Next;
                 node.Feature != null;
                 node = node.Next
                 )
@@ -49,12 +52,12 @@ namespace MecabTextConverter
                     //例:「、」とか「！」といった形態素
                     //何も要らない
                 }
-                else if (IsAdWords(category, categorySmall))
+                else if (_isAdWords(category, categorySmall))
                 {
                     //例:「私は」の「は」とかの助詞っぽいやつ
                     result.Append("+");
                 }
-                else if (IsDependentWord(category, categorySmall))
+                else if (_isDependentWord(category, categorySmall))
                 {
                     //例:「知ってる」の「てる」など単体で成立しないタイプの動詞/名詞
                     //何も要らない
@@ -73,12 +76,34 @@ namespace MecabTextConverter
 
         }
 
-        public MeCabTagger MeCabTagger { get; }
+        public void Dispose()
+        {
+            if (_meCabTagger != null)
+            {
+                _meCabTagger.Dispose();
+                _meCabTagger = null;
+            }
+        }
 
-        private bool IsAdWords(string category, string categorySmall)
+        private MeCabTagger _meCabTagger;
+
+        private void InitializeMeCabTagger()
+        {
+            var param = new MeCabParam();
+            param.DicDir = Path.Combine(
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                @"dic\ipadic"
+                );
+
+            _meCabTagger = MeCabTagger.Create(param);
+        }
+
+        #region 品詞の種類分析するための静的関数/プロパティ
+
+        private static bool _isAdWords(string category, string categorySmall)
             => SubWordCategories.Contains(category);
 
-        private bool IsDependentWord(string category, string categorySmall)
+        private static bool _isDependentWord(string category, string categorySmall)
             => SubWordCategoryPair.Contains(new Tuple<string, string>(category, categorySmall));
 
         /// <summary>単語の区切れ目にならない品詞の種類を取得</summary>
@@ -108,6 +133,8 @@ namespace MecabTextConverter
             "!",
             "?"
         };
- 
+
+        #endregion
+
     }
 }

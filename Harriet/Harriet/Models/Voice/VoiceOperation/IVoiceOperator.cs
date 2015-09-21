@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+
+using HarrietModelInterface;
 
 namespace Harriet.Models.Voice
 {

@@ -49,9 +49,16 @@ namespace Harriet.Models.Scripting
 
             _keyboardHook = new KeyboardHook(OnKeyboardUpDown);
 
-            //プラグインがあったら拾い、無かったら無視
-            TextConverter = TextToPronounceConverterLoader.Load().FirstOrDefault() ?? 
-                            new ImeTextConverter();
+            ////プラグインがあったら拾い、無かったら無視
+            //try
+            //{
+            //    TextConverter = TextToPronounceConverterLoader.Load().FirstOrDefault() ??
+            //                    new ImeTextConverter(); 
+            //}
+            //catch(Exception)
+            //{
+            //    TextConverter = new ImeTextConverter();
+            //}
 
             _scriptApiSetting = scriptApiSetting;
         }
@@ -67,10 +74,10 @@ namespace Harriet.Models.Scripting
         {
             if (IsOnUIThread) return;
 
-            string pronounce = TextConverter.Convert(input);
+            //string pronounce = TextConverter.Convert(input);
 
             var t1 = Task.Run(() => _chatWindow.RenderText(text, letterPerSec));
-            var t2 = _voiceOperater.PlayByPronounce(pronounce, useLipSynch);
+            var t2 = _voiceOperater.PlayByPronounce(input, useLipSynch);
 
             Task.WaitAll(t1, t2);
             Wait(_scriptApiSetting.SerihuInterval);
@@ -93,8 +100,8 @@ namespace Harriet.Models.Scripting
         {
             if (IsOnUIThread) return;
 
-            string pronounce = TextConverter.Convert(input);
-            _voiceOperater.PlayByPronounce(pronounce, useLipSynch).Wait();
+            //string pronounce = TextConverter.Convert(input);
+            _voiceOperater.PlayByPronounce(input, useLipSynch).Wait();
             Wait(_scriptApiSetting.SerihuInterval);
         }
 
@@ -203,22 +210,22 @@ namespace Harriet.Models.Scripting
         /// <summary>スクリプトの実行リクエスト</summary>
         public IScriptRequestor ScriptRequest { get; }
 
-        private ITextToPronounceConverter _textConverter;
-        /// <summary>音声合成の前処理器。実行中に変更してもOKなタイプ</summary>
-        public ITextToPronounceConverter TextConverter
-        {
-            get
-            {
-                return _textConverter ?? (_textConverter = new ImeTextConverter());
-            }
-            set
-            {
-                if (value != null)
-                {
-                    _textConverter = value;
-                }
-            }
-        }
+        //private ITextToPronounceConverter _textConverter;
+        ///// <summary>音声合成の前処理器。実行中に変更してもOKなタイプ</summary>
+        //public ITextToPronounceConverter TextConverter
+        //{
+        //    get
+        //    {
+        //        return _textConverter ?? (_textConverter = new ImeTextConverter());
+        //    }
+        //    set
+        //    {
+        //        if (value != null)
+        //        {
+        //            _textConverter = value;
+        //        }
+        //    }
+        //}
 
         /// <summary>リソースを解放します。</summary>
         public void Dispose()

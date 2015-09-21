@@ -44,10 +44,7 @@ namespace Harriet.Models.Core
 
             _chatWindow = new ChatWindowModel(chatWindowPosition);
 
-            var voiceOperator = new VoiceOperator(
-                new AquesVoiceSynther(_setting.Voice),
-                _setting.Voice
-                );
+            var voiceOperator = new VoiceOperator(_setting.Voice);
             voiceOperator.LipSynchRequested += (_, e) => _lipSyncher = e.LipSyncher;
 
             var scriptRequestor = new SimpleScriptRequestor();

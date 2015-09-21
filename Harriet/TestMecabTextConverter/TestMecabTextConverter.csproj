@@ -51,6 +51,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HarrietModelInterface\HarrietModelInterface.csproj">
+      <Project>{2E3998F6-8FD5-4E1F-B5FA-523B6B8B08CB}</Project>
+      <Name>HarrietModelInterface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MecabTextConverter\MecabTextConverter.csproj">
       <Project>{eb78915e-ad83-4f39-929d-a59ef7e2a422}</Project>
       <Name>MecabTextConverter</Name>

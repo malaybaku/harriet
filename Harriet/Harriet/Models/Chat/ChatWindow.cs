@@ -36,6 +36,7 @@ namespace Harriet.Models.Chat
         public void RenderText(string text, double charPerSec)
         {
             //いったん内容を消す
+            Flush();
             Content = string.Empty;
 
             if (charPerSec <= 0.0)
@@ -88,6 +89,7 @@ namespace Harriet.Models.Chat
         public void RenderContent(object content)
         {
             //いったん内容を消去してから再表示する: リフレッシュみたいなもん
+            Flush();
             Content = string.Empty;
             Content = content;
         }

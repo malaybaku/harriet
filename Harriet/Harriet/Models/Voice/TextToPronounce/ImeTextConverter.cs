@@ -9,6 +9,8 @@ namespace Harriet.Models.Voice
     [Export(typeof(ITextToPronounceConverter))]
     public class ImeTextConverter : ITextToPronounceConverter
     {
+        public string Name => "MS IME";
+
         public ImeTextConverter()
         {
             _imeLanguage = new ImeLanguage();
@@ -16,6 +18,11 @@ namespace Harriet.Models.Voice
 
         public string Convert(string input)
         {
+            if(_imeLanguage == null)
+            {
+                _imeLanguage = new ImeLanguage();
+            }
+
             return DispatcherHelper.UIDispatcher.Invoke(() =>
             {
                 string result = _imeLanguage.GetYomi(input);
@@ -39,6 +46,15 @@ namespace Harriet.Models.Voice
 
         /// <summary>AquesTalkの発音記号列規則に則ってない文字を消去するかを取得、設定します。</summary>
         public bool RemoveCharsNotSupportedInAquesTalk { get; set; } = true;
+
+        public void Dispose()
+        {
+            if(_imeLanguage != null)
+            {
+                _imeLanguage.Dispose();
+                _imeLanguage = null;
+            }
+        }
 
         /// <summary>[a-z]の文字列は消去、[A-Z]はエー、ビー、...、ゼットという読みに直す</summary>
         /// <param name="input"></param>

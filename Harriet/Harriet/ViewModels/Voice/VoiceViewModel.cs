@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Harriet.Models.Voice;
+using System.Linq;
 
 namespace Harriet.ViewModels
 {
@@ -9,37 +10,44 @@ namespace Harriet.ViewModels
         public VoiceViewModel(IVoiceSetting setting)
         {
             VoiceType = setting.VoiceType;
+            TextConverterType = setting.TextConverterType;
+
             Volume = setting.Volume;
             Speed = setting.Speed;
             Pitch = setting.Pitch;
 
+            AllVoices = setting.AvailableVoices
+                .OrderBy(v => v)
+                .ToArray();
+            
+            AllTextConverters = setting.AvailableTextConverters
+                .OrderBy(c => c)
+                .ToArray();
+
             AssignToSetting(setting);
+
         }
 
         /// <summary>選択可能なすべての声種を取得します。</summary>
-        public string[] AllVoices
-        {
-            get
-            {
-                return new string[]{
-                    "女性1",
-                    "女性2",
-                    "男性1",
-                    "男性2",
-                    "ロボット",
-                    "中性",
-                    "機械",
-                    "特殊"
-                };
-            }
-        }
+        public string[] AllVoices { get; }
 
-        private string _VoiceType = "女性1";
+        /// <summary>選択可能なすべての平文/発声変換器を取得します。</summary>
+        public string[] AllTextConverters { get; }
+
+        private string _VoiceType = AquesVoiceConstNames.NameF1;
         /// <summary>声の種類を取得、設定します。</summary>
         public string VoiceType
         {
             get { return _VoiceType; }
             set { SetAndRaisePropertyChanged(ref _VoiceType, value); }
+        }
+
+        private string _TextConverterType = EmptyTextToPronounceConverter.ConverterName;
+        /// <summary>声の種類を取得、設定します。</summary>
+        public string TextConverterType
+        {
+            get { return _TextConverterType; }
+            set { SetAndRaisePropertyChanged(ref _TextConverterType, value); }
         }
 
         private int _Volume = 50;
@@ -74,6 +82,10 @@ namespace Harriet.ViewModels
                 {
                     setting.VoiceType = VoiceType;
                 }
+                else if(e.PropertyName == nameof(TextConverterType))
+                {
+                    setting.TextConverterType = TextConverterType;
+                }
                 else if(e.PropertyName == nameof(Volume))
                 {
                     setting.Volume = Volume;
@@ -99,6 +111,10 @@ namespace Harriet.ViewModels
             if (e.PropertyName == nameof(VoiceType))
             {
                 VoiceType = setting.VoiceType;
+            }
+            else if(e.PropertyName == nameof(TextConverterType))
+            {
+                TextConverterType = setting.TextConverterType;
             }
             else if (e.PropertyName == nameof(Volume))
             {

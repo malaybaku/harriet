@@ -102,8 +102,8 @@ namespace Harriet.Models.Scripting
         /// <summary>キャラクターの名前を取得します。</summary>
         string CharacterName { get; }
 
-        /// <summary>合成音声の発音前処理を表します。</summary>
-        ITextToPronounceConverter TextConverter { get; set; }
+        ///// <summary>合成音声の発音前処理を表します。</summary>
+        //ITextToPronounceConverter TextConverter { get; set; }
 
         /// <summary>設定事項を取得します。</summary>
         SettingWindowViewModel Setting { get; }
