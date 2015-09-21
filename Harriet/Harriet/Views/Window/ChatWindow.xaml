@@ -1,0 +1,126 @@
+﻿<Window x:Class="Harriet.Views.ChatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:behaviors="clr-namespace:Harriet.Views.Behaviors"
+        mc:Ignorable="d"
+        xmlns:v="clr-namespace:Harriet.Views"
+        xmlns:vm="clr-namespace:Harriet.ViewModels"
+        xmlns:converter="clr-namespace:Harriet.Views.Converters"
+        xmlns:chrome="http://schemes.grabacr.net/winfx/2014/chrome"
+        Left="{Binding Position.Left, Mode=TwoWay}"
+        Top="{Binding Position.Top, Mode=TwoWay}"
+        Width="{Binding Position.Width, Mode=TwoWay}"
+        Height ="{Binding Position.Height, Mode=TwoWay}"
+        Foreground="{Binding Color.Foreground}"
+        Topmost="{Binding Topmost, Mode=TwoWay}"
+        Visibility="{Binding Appearance.Visibility, Mode=TwoWay}"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ShowInTaskbar="False">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/BasicMetroStyle.xaml"/>
+                <ResourceDictionary>
+                    <converter:FontFamilyStringConverter x:Key="FontFamilyStringConverter"/>
+                    <converter:FontStyleBooleanConverter x:Key="FontStyleBooleanConverter"/>
+                    <converter:FontWeightBooleanConverter x:Key="FontWeightBooleanConverter"/>
+                    <converter:RelativePositionConverter x:Key="RelativePositionConverter"/>
+                    <converter:StringToTextBlockConverterIValueConverter x:Key="ChatContentConverter"/>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                    <Style TargetType="RadioButton">
+                        <!-- 特に無し:MetroRadianceのスタイル切るのが目的 -->
+                    </Style>
+                    <SolidColorBrush x:Key="InactiveChromeBrush" Color="{Binding Appearance.InactiveChromeColor}"/>
+                    <SolidColorBrush x:Key="ActiveChromeBrush" Color="{Binding Appearance.ActiveChromeColor}"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+     
+        <i:EventTrigger EventName="ContentRendered">
+            <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
+        </i:EventTrigger>
+
+        <!--Windowが閉じたタイミングでViewModelのDisposeメソッドが呼ばれます-->
+        <i:EventTrigger EventName="Closed">
+            <l:DataContextDisposeAction/>
+        </i:EventTrigger>
+
+        <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
+
+        <!--Close処理をVMからのコマンドで受け取る-->
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction />
+        </l:InteractionMessageTrigger>
+    </i:Interaction.Triggers>
+    <i:Interaction.Behaviors>
+        <behaviors:HideSystemMenuBehavior/>
+        <l:WindowCloseCancelBehavior CanClose="{Binding CanClose}" 
+                                     CloseCanceledCallbackCommand="{Binding Appeanrace.HideWindowCommand}"/>
+        <chrome:MetroChromeBehavior ActiveBrush="{Binding Source={StaticResource ActiveChromeBrush}}"
+                                    InactiveBrush="{Binding Source={StaticResource InactiveChromeBrush}}"
+                                    Mode="VisualStudio2013"/>
+    </i:Interaction.Behaviors>
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="表示位置">
+                <RadioButton Content="動かない" 
+                                IsChecked="{Binding Path=Position.Layout.RelativePosition, Mode=TwoWay,
+                                Converter={StaticResource RelativePositionConverter},
+                                ConverterParameter=None}"/>
+                <RadioButton Content="左上" 
+                            IsChecked="{Binding Path=Position.Layout.RelativePosition, Mode=TwoWay,
+                            Converter={StaticResource RelativePositionConverter},
+                            ConverterParameter=LeftTop}"/>
+                <RadioButton Content="右上"  
+                            IsChecked="{Binding Path=Position.Layout.RelativePosition, Mode=TwoWay, 
+                            Converter={StaticResource RelativePositionConverter},
+                            ConverterParameter=RightTop}"/>
+                <RadioButton Content="左下"  
+                            IsChecked="{Binding Path=Position.Layout.RelativePosition, Mode=TwoWay, 
+                            Converter={StaticResource RelativePositionConverter},
+                            ConverterParameter=LeftBottom}"/>
+                <RadioButton Content="右下"  
+                            IsChecked="{Binding Path=Position.Layout.RelativePosition, Mode=TwoWay, 
+                            Converter={StaticResource RelativePositionConverter},
+                            ConverterParameter=RightBottom}"/>
+            </MenuItem>
+            <MenuItem Header="フォント選択" Command="{Binding TextFont.SelectFontCommand}"/>
+            <MenuItem Header="元のサイズに戻す" Command="{Binding Position.ResetSizeCommand}"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+    <DockPanel Background="{Binding Color.Background}">
+        <DockPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{Binding TextFont.FontFamilyName, Mode=TwoWay, Converter={StaticResource FontFamilyStringConverter}}"/>
+                <Setter Property="FontSize" Value="{Binding TextFont.FontSize}"/>
+                <Setter Property="FontStyle" Value="{Binding TextFont.IsFontItalic, Converter={StaticResource FontStyleBooleanConverter}}"/>
+                <Setter Property="FontWeight" Value="{Binding TextFont.IsFontBold, Converter={StaticResource FontWeightBooleanConverter}}"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+        </DockPanel.Resources>
+        <DockPanel DockPanel.Dock="Top" Height="32" LastChildFill="False" Margin="0">
+            <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center"
+                    Margin="5" FontSize="12"
+                    Text="{Binding CharacterName.CharacterName}"/>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top">
+                <Button Content="4" Style="{StaticResource CaptionButtonStyleKey}"
+                        Command="{Binding GoNextCommand}"
+                    />
+                <Button Content="r" Style="{StaticResource CaptionButtonStyleKey}"
+                        Command="{Binding Appearance.HideCommand}"
+                        />
+            </StackPanel>
+        </DockPanel>
+        <ContentControl Margin="5" Content="{Binding Content, Mode=OneWay, Converter={StaticResource ChatContentConverter}}"/>
+    </DockPanel>
+</Window>

@@ -1,0 +1,275 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="VS2013TextEditBackground">#1E1E1E</Color>
+    <Color x:Key="VS2013TextEditBorder">#3E3E42</Color>
+    <Color x:Key="VS2013TextEditDisabled">#282828</Color>
+    <Color x:Key="VS2013TextForeground">White</Color>
+    <Color x:Key="VS2013HilightedItem">Black</Color>
+    <Color x:Key="VS2013Blue">#007ACC</Color>
+    <Color x:Key="SliderThumbBorderMouseOver">#007ACC</Color>
+
+    <Color x:Key="SliderThumbForegroundNormal">Black</Color>
+    <Color x:Key="SliderThumbForegroundMouseOver">#404040</Color>
+    <Color x:Key="SliderThumbForegroundPressed">Black</Color>
+
+    <!--Control colors.-->
+    <Color x:Key="DisabledControlDarkColor">#FFC5CBF9</Color>
+
+    <Color x:Key="ControlLightColor">DarkGray</Color>
+    <Color x:Key="ControlDarkColor">#FF211AA9</Color>
+
+    <Color x:Key="ControlMouseOverColor">#FF3843C4</Color>
+    <Color x:Key="ControlPressedColor">#FF211AA9</Color>
+
+
+    <Color x:Key="GlyphColor">White</Color>
+
+    <!--Border colors-->
+    <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
+    <Color x:Key="BorderDarkColor">LightGray</Color>
+
+    <!--Control-specific resources.-->
+    <Color x:Key="SliderTrackDarkColor">#FFC5CBF9</Color>
+
+    <Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SliderThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Width" Value="13" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Rectangle x:Name="Rectangle" StrokeThickness="1">
+                        <Rectangle.Stroke>
+                            <SolidColorBrush Color="{StaticResource VS2013TextEditBorder}"/>
+                        </Rectangle.Stroke>
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{StaticResource SliderThumbForegroundNormal}"/>
+                        </Rectangle.Fill>
+                        <Rectangle.Effect>
+                            <DropShadowEffect Color="{StaticResource SliderThumbBorderMouseOver}"
+                                                  BlurRadius="0"
+                                                  ShadowDepth="0"/>
+                        </Rectangle.Effect>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
+                                                                          Storyboard.TargetName="Rectangle">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource SliderThumbForegroundMouseOver}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Rectangle"
+                                                                          Storyboard.TargetProperty="Stroke.Color"
+                                                                          >
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource SliderThumbBorderMouseOver}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Rectangle"
+                                                                           Storyboard.TargetProperty="Effect.BlurRadius">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="8"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
+                                                                          Storyboard.TargetName="Rectangle">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource SliderThumbForegroundPressed}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Rectangle"
+                                                                          Storyboard.TargetProperty="Stroke.Color"
+                                                                          >
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource SliderThumbBorderMouseOver}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
+                                                                          Storyboard.TargetName="Rectangle">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlDarkColor}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Rectangle>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Template when the orientation of the Slider is Horizontal.-->
+    <ControlTemplate x:Key="HorizontalSlider" TargetType="{x:Type Slider}">
+        <Grid x:Name="Grid" Opacity="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TickBar x:Name="TopTick"
+                         SnapsToDevicePixels="True"
+                         Placement="Top"
+                         Height="4"
+                         Visibility="Collapsed">
+                <TickBar.Fill>
+                    <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+                </TickBar.Fill>
+            </TickBar>
+            <Border x:Name="TrackBackground"
+                        Grid.Row="1"
+                        Margin="6,0"
+                        Height="3"
+                        BorderThickness="1">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="{StaticResource BorderDarkColor}"/>
+                </Border.BorderBrush>
+                <Border.Background>
+                    <SolidColorBrush Color="{StaticResource BorderDarkColor}"/>
+                </Border.Background>
+            </Border>
+            <Track Grid.Row="1" x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderButtonStyle}"
+                                      Command="Slider.DecreaseLarge" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource SliderThumbStyle}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderButtonStyle}"
+                                      Command="Slider.IncreaseLarge" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <TickBar x:Name="BottomTick"
+                         SnapsToDevicePixels="True"
+                         Grid.Row="2"
+                         Fill="{TemplateBinding Foreground}"
+                         Placement="Bottom"
+                         Height="4"
+                         Visibility="Collapsed" />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver"/>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Grid"
+                                                           Storyboard.TargetProperty="Opacity">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.6"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>        
+        <ControlTemplate.Triggers>
+            <Trigger Property="TickPlacement" Value="TopLeft">
+                <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+                <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!--Template when the orientation of the Slider is Vertical.-->
+    <ControlTemplate x:Key="VerticalSlider" TargetType="{x:Type Slider}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" MinWidth="{TemplateBinding MinWidth}" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TickBar x:Name="TopTick"
+                         SnapsToDevicePixels="True"
+                         Placement="Left"
+                         Width="4"
+                         Visibility="Collapsed">
+                <TickBar.Fill>
+                    <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+                </TickBar.Fill>
+            </TickBar>
+
+            <Border x:Name="TrackBackground"
+                        Margin="0,6"
+                        CornerRadius="2"
+                        Width="4"
+                        Grid.Column="1"
+                        BorderThickness="1">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="{StaticResource BorderDarkColor}"/>
+                </Border.BorderBrush>
+                <Border.Background>
+                    <SolidColorBrush Color="{StaticResource BorderDarkColor}"/>
+                </Border.Background>
+            </Border>
+            <Track Grid.Column="1" x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderButtonStyle}" Command="Slider.DecreaseLarge" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource SliderThumbStyle}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderButtonStyle}" Command="Slider.IncreaseLarge" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <TickBar x:Name="BottomTick"
+                         SnapsToDevicePixels="True"
+                         Grid.Column="2"
+                         Fill="{TemplateBinding Foreground}"
+                         Placement="Right"
+                         Width="4"
+                         Visibility="Collapsed" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="TickPlacement" Value="TopLeft">
+                <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+                <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="SliderStyle" TargetType="{x:Type Slider}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="MinHeight" Value="28" />
+                <Setter Property="Template" Value="{StaticResource HorizontalSlider}" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="MinWidth" Value="28" />
+                <Setter Property="Template" Value="{StaticResource VerticalSlider}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,68 @@
+﻿<Window x:Class="Harriet.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+        xmlns:v="clr-namespace:Harriet.Views"
+        xmlns:vm="clr-namespace:Harriet.ViewModels"
+        xmlns:myb="clr-namespace:Harriet.Views.Behaviors"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        v:MainWindow.Nadenade="{Binding Nadenade, Mode=TwoWay}"
+        v:MainWindow.WindowItself="{Binding Window, Mode=OneWayToSource}"
+        Topmost="{Binding Topmost}"
+        Width="{Binding Width, Mode=TwoWay, TargetNullValue=400}"
+        Height="{Binding Height, Mode=TwoWay, TargetNullValue=400}"
+        Left="{Binding Left, Mode=TwoWay}"
+        Top="{Binding Path=Top, Mode=TwoWay}"
+        >
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+
+        <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
+        <i:EventTrigger EventName="ContentRendered">
+            <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
+        </i:EventTrigger>
+
+        <!--Windowが閉じたタイミングでViewModelのDisposeメソッドが呼ばれます-->
+        <i:EventTrigger EventName="Closed">
+            <l:DataContextDisposeAction/>
+        </i:EventTrigger>
+
+        <!--Close処理をVMからのコマンドで受け取る-->
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="Show/SettingWindow" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction Mode="NewOrActive" WindowType="v:SettingWindow" IsOwned="False"/>
+        </l:InteractionMessageTrigger>
+
+    </i:Interaction.Triggers>
+
+    <i:Interaction.Behaviors>
+        <!-- ウィンドウ閉じる前にモデルからの処理を挟む -->
+        <l:WindowCloseCancelBehavior CanClose="{Binding CanClose}"
+                                     CloseCanceledCallbackCommand="{Binding CloseCanceledCommand}"/>
+    </i:Interaction.Behaviors>
+
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="終了" Command="{Binding CloseCommand}"/>
+            <MenuItem Header="最前面に表示" IsCheckable="True" IsChecked="{Binding Topmost, Mode=TwoWay}"/>
+            <MenuItem Header="設定" Command="{Binding ShowSettingCommand}"/>
+            <MenuItem Header="キャラ変更" ItemsSource="{Binding AvailableCharacters}"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Grid>
+        <ContentControl Content="{Binding Content}"/>
+    </Grid>
+</Window>
+
