@@ -21,7 +21,7 @@ IronPythonスクリプトによって会話や自作キャラの表示に対応�
 
 
 ### 2. 想定する開発環境
-製作者はVisual Studio 2015 Communityで開発しています。
+製作者はWindows 10 / Visual Studio 2015 Communityで開発しています。
 
 
 ### 3. ソリューション構成について
@@ -40,9 +40,10 @@ Harrietで読み込み可能なキャラの仕様をインターフェースと�
 
 
 #### 3-3. HarrietModelInterface
-Harrietの内部処理に挿し込めるプラグインを作成するためのインターフェースを定義しています。現時点では「音声合成のために文章を前処理する」というのしか定義してませんが、今後増やす予定です。実装の例は現時点で一つだけです。
+Harrietの内部処理に挿し込めるプラグインを作成するためのインターフェースを定義しています。現時点では「音声合成器の追加」「音声合成のために文章を前処理する」の２点を定義しており、実装例として下記のプロジェクトがあります。。
 
-- MecabTextConverter : NMeCabライブラリを標準的な方法で用い、平文を発音に適したカタカナ表記に直す
+- SapiVoiceSynthesize: 音声合成器の実装です。WindowsのSpeech APIを使って読み上げ処理を行います。
+- MecabTextConverter : 音声合成(AquesTalk)のための前処理実装です。形態素解析ライブラリであるNMeCabを用いて、平文を発音に適したカタカナ表記に直します(TestMecabTextConverterプロジェクトが簡単なテスト例になっています)。
 
 
 ### 4. ライセンス
@@ -50,7 +51,7 @@ Harrietの内部処理に挿し込めるプラグインを作成するための�
 
 
 ### 5. 利用しているリソース
-リソースごとのライセンスは上述のライセンス中に示しています。
+各リソースごとのライセンスは上述のライセンス中に示しています。
 
 #### IronPython
 プログラミング言語Pythonの.NET実装です。 http://ironpython.net
@@ -61,7 +62,14 @@ MVVM(Model-View-ViewModel)インフラストラクチャです。 http://ugaya40
 #### MetroRadiance
 WPFの外観変更用ライブラリです。 https://www.nuget.org/packages/MetroRadiance/
 
+#### NAudio
+音声データの処理ライブラリです。 https://naudio.codeplex.com/
+
+### NMeCab
+形態素解析エンジンです。 https://osdn.jp/projects/nmecab/
+
 #### AquesTalk
 音声合成ライブラリです。 http://www.a-quest.com/
+
 
 
