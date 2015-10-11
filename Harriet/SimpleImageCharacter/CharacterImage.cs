@@ -48,11 +48,23 @@ namespace SimpleImageCharacter
                         return img;
                     });
 
+            #region 層状に画像ファイルを配置
             var grid = new Grid();
+            GridForeground = new Grid();
+            GridBackground = new Grid();
+            GridMainCharacterArea = new Grid();
+
+            grid.Children.Add(GridBackground);
+
             foreach(var i in _images)
             {
-                grid.Children.Add(i.Value);
+                GridMainCharacterArea.Children.Add(i.Value);
             }
+            grid.Children.Add(GridMainCharacterArea);
+
+            grid.Children.Add(GridForeground);
+            #endregion
+
             _viewBox = new Viewbox()
             {
                 Child = grid,
@@ -78,6 +90,15 @@ namespace SimpleImageCharacter
         private readonly Dictionary<string, Image> _images;
         //実際の表示に使うコンテナ
         private readonly Viewbox _viewBox;
+
+        public Brush OpacityMask
+        {
+            get { return GridMainCharacterArea.Dispatcher.Invoke(() => GridMainCharacterArea.OpacityMask); }
+            set { GridMainCharacterArea.Dispatcher.Invoke(() => { GridMainCharacterArea.OpacityMask = value; }); }
+        }
+        public Grid GridForeground { get; }
+        public Grid GridBackground { get; }
+        public Grid GridMainCharacterArea { get; }
 
         public void Update()
         {

@@ -42,7 +42,7 @@ namespace Harriet.Models.Scripting
             this.Window = window;
             this.Character = character;
             this._voiceOperater = voiceOperator;
-            this._chatWindow = chatWindow;
+            this.ChatWindow = chatWindow;
             this.CharacterName = characterName;
             this.Setting = new SettingWindowViewModel(setting);
             this.ScriptRequest = requestor;
@@ -76,7 +76,7 @@ namespace Harriet.Models.Scripting
 
             //string pronounce = TextConverter.Convert(input);
 
-            var t1 = Task.Run(() => _chatWindow.RenderText(text, letterPerSec));
+            var t1 = Task.Run(() => ChatWindow.RenderText(text, letterPerSec));
             var t2 = _voiceOperater.PlayByPronounce(input, useLipSynch);
 
             Task.WaitAll(t1, t2);
@@ -90,7 +90,7 @@ namespace Harriet.Models.Scripting
         {
             if (IsOnUIThread) return;
 
-            _chatWindow.RenderText(text, letterPerSec);
+            ChatWindow.RenderText(text, letterPerSec);
         }
 
         /// <summary> 声 + リップシンクだけ </summary>
@@ -127,7 +127,7 @@ namespace Harriet.Models.Scripting
 
         /// <summary> 任意のコンテンツを表示させる </summary>
         /// <param name="content"> 表示するコンテンツ </param>
-        public void ShowContent(object content) => _chatWindow.RenderContent(content);
+        public void ShowContent(object content) => ChatWindow.RenderContent(content);
 
         /// <summary> ある場所を目標地点にしてそこまで移動する </summary>
         /// <param name="x"> 目標地点のX座標 </param>
@@ -169,7 +169,7 @@ namespace Harriet.Models.Scripting
         }
 
         /// <summary>チャット枠を隠す</summary>
-        public void HideChatWindow() => _chatWindow.Hide();
+        public void HideChatWindow() => ChatWindow.Hide();
 
         /// <summary>指定された秒数だけ待機します。</summary>
         /// <param name="durationSec">待機する時間(秒)</param>
@@ -201,6 +201,9 @@ namespace Harriet.Models.Scripting
         /// <summary>APIの親に相当するウィンドウ的なものを取得します。</summary>
         public IMainWindow Window { get; }
 
+        /// <summary>チャット枠(モデル版)</summary>
+        public IChatWindowModel ChatWindow { get; }
+
         /// <summary>キャラクターの名前を取得します。</summary>
         public string CharacterName { get; }
 
@@ -230,7 +233,7 @@ namespace Harriet.Models.Scripting
         /// <summary>リソースを解放します。</summary>
         public void Dispose()
         {
-            _chatWindow.Dispose();
+            ChatWindow.Dispose();
             _voiceOperater.Dispose();
             _keyboardHook.Dispose();
         }
@@ -248,9 +251,6 @@ namespace Harriet.Models.Scripting
         /// <summary>発声の処理を実際に担う</summary>
         private readonly IVoiceOperator _voiceOperater;
         
-        /// <summary>チャット枠(モデル版)</summary>
-        private readonly IChatWindowModel _chatWindow;
-
         /// <summary>タイピングの監視によりリッチなアプリケーションが云々。</summary>
         private readonly KeyboardHook _keyboardHook;
 

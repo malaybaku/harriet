@@ -94,6 +94,7 @@
             </MenuItem>
             <MenuItem Header="フォント選択" Command="{Binding TextFont.SelectFontCommand}"/>
             <MenuItem Header="元のサイズに戻す" Command="{Binding Position.ResetSizeCommand}"/>
+            <MenuItem Header="現在のサイズをデフォルトに設定" Command="{Binding Position.SetCurrentSizeToDefaultCommand}" />
         </ContextMenu>
     </Window.ContextMenu>
     <DockPanel Background="{Binding Color.Background}">

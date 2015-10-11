@@ -72,6 +72,16 @@ namespace Harriet.ViewModels
         private void ResetSize() => _model.ResetSize();
         #endregion
 
+        #region SetCurrentSizeToDefaultCommand
+        private ViewModelCommand _setCurrentSizeToDefaultCommand;
+        public ViewModelCommand SetCurrentSizeToDefaultCommand
+            => _setCurrentSizeToDefaultCommand ?? (_setCurrentSizeToDefaultCommand = new ViewModelCommand(SetCurrentSizeToDefault));
+
+        //NOTE: 整数値じゃないと見栄えが悪いので丸めておく
+        private void SetCurrentSizeToDefault() => _model.SetDefaultSize((int)Width, (int)Height);
+        #endregion
+
+
         private readonly ChatWindowPositionModel _model;
 
         private void AssignToModel(ChatWindowPositionModel model)

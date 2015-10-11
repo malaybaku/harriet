@@ -73,6 +73,12 @@ namespace Harriet.Models.Chat
             Height = Layout.DefaultHeight;
         }
 
+        public void SetDefaultSize(double width, double height)
+        {
+            Layout.DefaultWidth = width;
+            Layout.DefaultHeight = height;
+        }
+
         //直接的に関数呼び出しで位置合わせを行ってもOK
         public void Relocate()
         {

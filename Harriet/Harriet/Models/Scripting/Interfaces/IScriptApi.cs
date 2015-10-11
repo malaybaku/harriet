@@ -2,6 +2,7 @@
 
 using Harriet.CharacterInterface;
 using Harriet.Models.Core;
+using Harriet.Models.Chat;
 using Harriet.ViewModels;
 using Harriet.Models.BasicUtil;
 
@@ -97,6 +98,9 @@ namespace Harriet.Models.Scripting
         IHarrietCharacter Character { get; }
         /// <summary>キャラクターを表示しているウィンドウを取得します。</summary>
         IMainWindow Window { get; }
+
+        /// <summary>チャット枠を取得します。</summary>
+        IChatWindowModel ChatWindow { get; }
         /// <summary>任意スクリプトの実行要求が出来るインターフェースを取得します。</summary>
         IScriptRequestor ScriptRequest { get; }
         /// <summary>キャラクターの名前を取得します。</summary>

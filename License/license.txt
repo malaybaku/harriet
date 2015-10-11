@@ -1,6 +1,6 @@
 Copyright ©  2015 獏(ばく) 
 
-NOTE: This program's license statement is only in Japanese. If a help is needed, please ask by e-mail.
+NOTE: This program's license statement is only in Japanese. If needed help, please ask by e-mail.
 
 
 1. ソースコード
@@ -94,7 +94,8 @@ webページ: http://www.a-quest.com/
 
 本プログラムはライセンスをそれなりに細かく区切る(プログラム本体/キャラクター/プラグイン)ようになっており、ライセンス上の問題に対して本プログラム製作者および各キャラクター/プラグインの製作者は最小限の対応で問題解決をする権利を主張します。
 
-例えば特定のキャラクターが著作権等の問題を指摘されて公開停止の必要が生じた場合、プログラム本体や他のキャラクター、各プラグインは当該キャラクターとライセンス上無関係であるため、公開体制を変更する義務を負いません。
+例えば特定のキャラクターが著作権等の問題を指摘されて公開停止の必要が生じた場合であっても、プログラム本体や他のキャラクター、各プラグインは当該キャラクターとライセンス上無関係であるため、公開体制を変更する義務を負いません。
+
 
 
 
