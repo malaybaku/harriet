@@ -60,6 +60,16 @@ namespace SimpleImageCharacter
             {
                 GridMainCharacterArea.Children.Add(i.Value);
             }
+            GridMainCharacterArea.RenderTransform = new TransformGroup()
+            {
+                Children = new TransformCollection
+                    {
+                        new TranslateTransform(),
+                        new ScaleTransform(),
+                        new RotateTransform()
+                    }
+            };
+
             grid.Children.Add(GridMainCharacterArea);
 
             grid.Children.Add(GridForeground);
@@ -172,6 +182,7 @@ namespace SimpleImageCharacter
 
         /// <summary>キャラのエフェクト(ぐにゃぐにゃするとか)がつけたいときの為に公開しておく。</summary>
         public Transform Transform => _viewBox.RenderTransform;
+        public Transform CharacterTransform => GridMainCharacterArea.RenderTransform;
 
     }
 }

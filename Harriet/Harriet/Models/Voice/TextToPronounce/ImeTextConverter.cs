@@ -34,7 +34,7 @@ namespace Harriet.Models.Voice
 
                 if (RemoveCharsNotSupportedInAquesTalk)
                 {
-                    result = Regex.Replace(result, @"[^ぁ-んァ-ン、。！？,.!?/+_]", "");
+                    result = Regex.Replace(result, @"[^ぁ-んァ-ンー、。！？,.!?/+_]", "");
                 }
 
                 return result;

@@ -8,6 +8,8 @@ using System.ComponentModel.Composition;
 using NMeCab;
 
 using HarrietModelInterface;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace MecabTextConverter
 {
@@ -25,55 +27,94 @@ namespace MecabTextConverter
         /// <returns>AquesTalkで発声可能な文字列</returns>
         public string Convert(string input)
         {
-            if(_meCabTagger == null)
+            try
             {
-                InitializeMeCabTagger();
+                if (_meCabTagger == null)
+                {
+                    InitializeMeCabTagger();
+                }
+
+                var result = new StringBuilder();
+
+                for (var node = _meCabTagger.ParseToNode(input).Next;
+                    (node != null && node.Next != null);
+                    node = node.Next
+                    )
+                {
+                    string[] features = node.Feature.Split(',');
+                    string category = features[0];
+                    string categorySmall = features[1];
+                    string added = features[features.Length - 1];
+
+                    double test = 0.0;
+                    bool isNumber = double.TryParse(node.Surface, out test);
+                    if(isNumber)
+                    {
+                        added = node.Surface;
+                    }
+                    else if(node.Surface == ".")
+                    {
+                        added = ".";
+                    }
+                    else if(category == NounCategory && added == "*")
+                    {
+                        added = node.Surface;
+                    }
+                    else
+                    {
+                        added = ConvertAlphabetToKatakana(added);
+                    }
+
+                    if (added == "*")
+                    {
+                        continue;
+                    }
+
+                    if (NotSlashedWords.Contains(added))
+                    {
+                        //例:「、」とか「！」といった形態素
+                        //何も要らない
+                    }
+                    else if (_isAdWords(category, categorySmall))
+                    {
+                        //例:「私は」の「は」とかの助詞っぽいやつ
+                        result.Append("+");
+                    }
+                    else if (_isDependentWord(category, categorySmall))
+                    {
+                        //例:「知ってる」の「てる」など単体で成立しないタイプの動詞/名詞
+                        //何も要らない
+                    }
+                    else
+                    {
+                        //普通の名詞や動詞]
+                        if(!isNumber)
+                        {
+                            result.Append("/");
+                        }
+                    }
+
+                    result.Append(added);
+
+                }
+
+                //AquesTalkのために
+                string resultStr = Regex.Replace(result.ToString(), @"[^ぁ-んァ-ン0-9ー、。！？,.?/+_]", "");
+                resultStr = Regex.Replace(resultStr, @"/{2,}", "/")
+                    .Replace("/。", "。")
+                    .Replace("/、", "、")
+                    .Replace("！", "。")
+                    .Replace("ッ/", "ッ")
+                    .Replace("ッ+", "ッ");
+                resultStr = Regex.Replace(resultStr, @"([\.\d]+)", @"<NUMK VAL=$1>");
+                return resultStr.Trim('/', '+');
+
             }
-
-            var result = new StringBuilder();
-
-            for (var node = _meCabTagger.ParseToNode(input).Next;
-                node.Feature != null;
-                node = node.Next
-                )
+            catch (Exception ex)
             {
-                string[] features = node.Feature.Split(',');
-                string category = features[0];
-                string categorySmall = features[1];
-                string added = features[features.Length - 1];
-
-                if (added == "*")
-                {
-                    continue;
-                }
-
-                if (NotSlashedWords.Contains(added))
-                {
-                    //例:「、」とか「！」といった形態素
-                    //何も要らない
-                }
-                else if (_isAdWords(category, categorySmall))
-                {
-                    //例:「私は」の「は」とかの助詞っぽいやつ
-                    result.Append("+");
-                }
-                else if (_isDependentWord(category, categorySmall))
-                {
-                    //例:「知ってる」の「てる」など単体で成立しないタイプの動詞/名詞
-                    //何も要らない
-                }
-                else
-                {
-                    //普通の名詞や動詞
-                    result.Append("/");
-                }
-
-                result.Append(added);
-
+                Debug.WriteLine($"error in MeCabTextConverter.Convert: {ex.Message}");
+                return String.Empty;
             }
-
-            return result.ToString().Trim('/', '+');
-
         }
 
         public void Dispose()
@@ -133,6 +174,38 @@ namespace MecabTextConverter
             "!",
             "?"
         };
+
+        const string NounCategory = "名詞";
+
+        private static string ConvertAlphabetToKatakana(string input)
+        {
+            return input.Replace("A", "エー")
+                .Replace("B", "ビー")
+                .Replace("C", "シー")
+                .Replace("D", "ディー")
+                .Replace("E", "イー")
+                .Replace("F", "エフ")
+                .Replace("G", "ジー")
+                .Replace("H", "エイチ")
+                .Replace("I", "アイ")
+                .Replace("J", "ジェー")
+                .Replace("K", "ケー")
+                .Replace("L", "エル")
+                .Replace("M", "エム")
+                .Replace("N", "エヌ")
+                .Replace("O", "オー")
+                .Replace("P", "ピー")
+                .Replace("Q", "キュー")
+                .Replace("R", "アール")
+                .Replace("S", "エス")
+                .Replace("T", "ティー")
+                .Replace("U", "ユー")
+                .Replace("V", "ブイ")
+                .Replace("W", "ダブリュー")
+                .Replace("X", "エックス")
+                .Replace("Y", "ワイ")
+                .Replace("Z", "ゼット");
+        }
 
         #endregion
 
